@@ -45,3 +45,4 @@ export const ItemCounter = ({ name, quantity = 1 }: Props) => {
     </section>
   );
 };
+};
