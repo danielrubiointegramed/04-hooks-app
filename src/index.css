@@ -1,5 +1,25 @@
 @import 'tailwindcss';
 
+
+/* Su clase personalizada de gradiente estática */
 .bg-gradient {
   @apply bg-gradient-to-br from-slate-900 via-gray-900 to-slate-800 min-h-screen flex items-center justify-center p-4 text-white;
+}
+
+/* Animación de gradiente dinámico */
+@keyframes gradient-x {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.animate-gradient-x {
+  background-size: 200% 200%;
+  animation: gradient-x 10s ease infinite;
 }
