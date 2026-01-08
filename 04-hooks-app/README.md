@@ -1,44 +1,54 @@
-# 04 Hooks App
+# React + TypeScript + Vite
 
-Proyecto de práctica con **React + Vite + TypeScript (SWC)** para aprender y experimentar con **React Hooks**.
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
----
+Currently, two official plugins are available:
 
-## 🚀 Scripts disponibles
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-En el directorio del proyecto, puedes ejecutar:
+## Expanding the ESLint configuration
 
-- `npm install` → instala las dependencias  
-- `npm run dev` → inicia el servidor en desarrollo en [http://localhost:5173](http://localhost:5173)  
-- `npm run build` → genera la build para producción  
-- `npm run preview` → sirve la build de producción localmente  
+If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
 
----
+```js
+export default tseslint.config({
+  extends: [
+    // Remove ...tseslint.configs.recommended and replace with this
+    ...tseslint.configs.recommendedTypeChecked,
+    // Alternatively, use this for stricter rules
+    ...tseslint.configs.strictTypeChecked,
+    // Optionally, add this for stylistic rules
+    ...tseslint.configs.stylisticTypeChecked,
+  ],
+  languageOptions: {
+    // other options...
+    parserOptions: {
+      project: ['./tsconfig.node.json', './tsconfig.app.json'],
+      tsconfigRootDir: import.meta.dirname,
+    },
+  },
+})
+```
 
+You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
 
----
+```js
+// eslint.config.js
+import reactX from 'eslint-plugin-react-x'
+import reactDom from 'eslint-plugin-react-dom'
 
-## 🛠️ Tecnologías
-
-- [React 18](https://react.dev/)  
-- [Vite 7](https://vitejs.dev/)  
-- [TypeScript](https://www.typescriptlang.org/)  
-- [SWC](https://swc.rs/) → compilación ultrarrápida  
-
----
-
-## 🎯 Objetivo
-
-Explorar y practicar los **React Hooks** principales:
-
-- `useState` → manejo de estado local  
-- `useEffect` → efectos secundarios y ciclo de vida  
-- `useContext` → contexto global  
-- `useReducer` → estados complejos  
-- **Custom Hooks** → reutilización de lógica  
-
----
-
-## 👤 Autor
-
-**Daniel Hernández Rubio** – [@DanielHR3](https://github.com/DanielHR3)
+export default tseslint.config({
+  plugins: {
+    // Add the react-x and react-dom plugins
+    'react-x': reactX,
+    'react-dom': reactDom,
+  },
+  rules: {
+    // other rules...
+    // Enable its recommended typescript rules
+    ...reactX.configs['recommended-typescript'].rules,
+    ...reactDom.configs.recommended.rules,
+  },
+})
+```
